@@ -66,6 +66,25 @@ class BookingController {
         }
 
         $bookingId = "BKG-" . time();
+
+        $storageDir = dirname(__DIR__, 2) . '/storage';
+        if (!is_dir($storageDir)) {
+            mkdir($storageDir, 0777, true);
+        }
+        $filePath = $storageDir . '/bookings.json';
+        $currentBookings = file_exists($filePath) ? json_decode(file_get_contents($filePath), true) : [];
+        if (!is_array($currentBookings)) {
+            $currentBookings = [];
+        }
+        $currentBookings[] = [
+            'booking_id' => $bookingId,
+            'customer_name' => $customerName,
+            'show_id' => (int) $showId,
+            'quantity' => $quantity,
+            'booking_time' => date('Y-m-d H:i:s')
+        ];
+        file_put_contents($filePath, json_encode($currentBookings, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
         Response::json(201, [
             'message' => 'Booking created successfully',
             'data' => [

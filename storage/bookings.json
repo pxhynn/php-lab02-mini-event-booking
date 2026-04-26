@@ -1,0 +1,16 @@
+[
+    {
+        "booking_id": "BKG-1777218990",
+        "customer_name": "Nguyen Van A",
+        "show_id": 1,
+        "quantity": 2,
+        "booking_time": "2026-04-26 15:56:30"
+    },
+    {
+        "booking_id": "BKG-1777219070",
+        "customer_name": "Nguyen Van A",
+        "show_id": 1,
+        "quantity": 2,
+        "booking_time": "2026-04-26 15:57:50"
+    }
+]

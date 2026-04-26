@@ -1,0 +1,36 @@
+### 1. Minh chứng GET lấy danh sách sự kiện (Kỳ vọng: 200 OK)
+GET http://localhost:8000/shows
+
+### 2. Minh chứng POST đặt vé thành công (Kỳ vọng: 201 Created)
+POST http://localhost:8000/bookings
+Content-Type: application/json
+
+{
+  "show_id": 1,
+  "customer_name": "Nguyen Van A",
+  "email": "a@example.com",
+  "quantity": 2
+}
+
+### 3. Minh chứng lỗi Content-Type (Kỳ vọng: 415 Unsupported Media Type)
+POST http://localhost:8000/bookings
+Content-Type: text/plain
+
+"hello"
+
+### 4. Minh chứng lỗi dữ liệu không hợp lệ/hết vé (Kỳ vọng: 422 Unprocessable Content)
+POST http://localhost:8000/bookings
+Content-Type: application/json
+
+{
+  "show_id": 2,
+  "customer_name": "Fan Hieu Thu Hai",
+  "email": "fan@example.com",
+  "quantity": 1
+}
+
+### 5. Minh chứng lỗi sai Method (Kỳ vọng: 405 Method Not Allowed)
+PUT http://localhost:8000/bookings
+
+### 6. Minh chứng lỗi sai đường dẫn (Kỳ vọng: 404 Not Found)
+GET http://localhost:8000/duong-dan-sai
